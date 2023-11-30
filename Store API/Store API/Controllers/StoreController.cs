@@ -8,7 +8,6 @@ namespace Store_API.Controllers
     public class StoreController : ControllerBase
     {
         List<Item> StoreItems;
-        List<CartItem> CartItems;
 
         public StoreController()
         {
@@ -20,8 +19,6 @@ namespace Store_API.Controllers
                 new Item(4, "Brown Bear", 39.99m),
                 new Item(5, "Runebear", 49.99m),
             };
-
-            CartItems = new List<CartItem>();
         }
 
         [HttpGet("GetById")]
@@ -35,39 +32,5 @@ namespace Store_API.Controllers
         {
             return StoreItems;
         }
-
-        [HttpGet("GetCart")]
-        public List<CartItem> GetCart()
-        {
-            return CartItems;
-        }
-
-        [HttpPost("AddItem")]
-        public void AddItem(int Id, int quantity = 1)
-        {
-            Item newItem = StoreItems.FirstOrDefault(x => x.Id == Id);
-            
-            if (newItem != null)
-                CartItems.Add(new CartItem(newItem, quantity));
-        }
-
-        [HttpPost("DeleteItem")]
-        public List<CartItem> DeleteItem(int Id)
-        {
-            CartItems.RemoveAll(x => x.Item.Id == Id);
-
-            return CartItems;
-        }
-
-        [HttpPost("UpdateQuantity")]
-        public List<CartItem> UpdateQuantity(int Id, int newQuantity)
-        {
-            CartItem item = CartItems.FirstOrDefault(x => x.Item.Id == Id);
-            if (item != null)
-                item.Quantity = newQuantity;
-
-            return CartItems;
-        }
-
     }
 }
