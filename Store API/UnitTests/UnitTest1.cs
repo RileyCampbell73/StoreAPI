@@ -6,11 +6,14 @@ namespace UnitTests
     [TestClass]
     public class UnitTest1
     {
+        StoreController controller;
+        public UnitTest1 () 
+        {
+            controller = new StoreController ();
+        }
         [TestMethod]
         public void TestGet()
         {
-            var controller = new StoreController();
-
             var item = controller.Get(1);
 
             Assert.AreEqual(1, item.Id);
@@ -19,19 +22,14 @@ namespace UnitTests
         [TestMethod]
         public void TestGetAll()
         {
-            var controller = new StoreController();
-
             var items = controller.Get();
 
             Assert.IsTrue(items.GetType() == typeof(List<Item>));
-            // Assert.AreEqual(1, item.Id);
         }
 
         [TestMethod]
         public void TestCart()
         {
-            var controller = new StoreController();
-
             Item item = controller.Get(1);
             controller.AddItem(item.Id, 1);
 

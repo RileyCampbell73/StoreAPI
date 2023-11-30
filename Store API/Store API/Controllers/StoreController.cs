@@ -8,17 +8,17 @@ namespace Store_API.Controllers
     public class StoreController : ControllerBase
     {
         List<Item> StoreItems;
-
         List<CartItem> CartItems;
+
         public StoreController()
         {
             StoreItems = new List<Item>()
             {
-                new Item(1, "Item 1", 9.99m),
-                new Item(2, "Item 2", 19.99m),
-                new Item(3, "Item 3", 29.99m),
-                new Item(4, "Item 4", 39.99m),
-                new Item(5, "Item 5", 49.99m),
+                new Item(1, "Teddy Bear Keychain", 9.99m),
+                new Item(2, "Teddy Bear Plushy", 19.99m),
+                new Item(3, "Black Bear", 29.99m),
+                new Item(4, "Brown Bear", 39.99m),
+                new Item(5, "Runebear", 49.99m),
             };
 
             CartItems = new List<CartItem>();
@@ -48,9 +48,7 @@ namespace Store_API.Controllers
             Item newItem = StoreItems.FirstOrDefault(x => x.Id == Id);
             
             if (newItem != null)
-            {
                 CartItems.Add(new CartItem(newItem, quantity));
-            }
         }
 
         [HttpPost("DeleteItem")]
