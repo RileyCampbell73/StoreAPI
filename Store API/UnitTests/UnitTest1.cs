@@ -13,7 +13,6 @@ namespace UnitTests
 
             var item = controller.Get(1);
 
-            //Assert.IsTrue(response.TryGetContentValue<Product>(out product));
             Assert.AreEqual(1, item.Id);
         }
         

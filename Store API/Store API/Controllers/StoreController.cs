@@ -64,7 +64,9 @@ namespace Store_API.Controllers
         [HttpPost("UpdateQuantity")]
         public List<CartItem> UpdateQuantity(int Id, int newQuantity)
         {
-            CartItems.FirstOrDefault(x => x.Item.Id == Id).Quantity = newQuantity;
+            CartItem item = CartItems.FirstOrDefault(x => x.Item.Id == Id);
+            if (item != null)
+                item.Quantity = newQuantity;
 
             return CartItems;
         }
