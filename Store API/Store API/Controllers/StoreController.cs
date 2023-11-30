@@ -24,25 +24,25 @@ namespace Store_API.Controllers
             CartItems = new List<CartItem>();
         }
 
-        [HttpGet(Name = "Get")]
+        [HttpGet("GetById")]
         public Item Get(int Id)
         {
             return StoreItems.FirstOrDefault(x => x.Id == Id);
         }
 
-        [HttpGet(Name = "Get")]
+        [HttpGet("Get")]
         public List<Item> Get()
         {
             return StoreItems;
         }
 
-        [HttpGet(Name = "GetCart")]
+        [HttpGet("GetCart")]
         public List<CartItem> GetCart()
         {
             return CartItems;
         }
 
-        [HttpPost(Name = "Add")]
+        [HttpPost("AddItem")]
         public void AddItem(int Id, int quantity = 1)
         {
             Item newItem = StoreItems.FirstOrDefault(x => x.Id == Id);
@@ -53,7 +53,7 @@ namespace Store_API.Controllers
             }
         }
 
-        [HttpPost(Name = "Delete")]
+        [HttpPost("DeleteItem")]
         public List<CartItem> DeleteItem(int Id)
         {
             CartItems.RemoveAll(x => x.Item.Id == Id);
@@ -61,7 +61,7 @@ namespace Store_API.Controllers
             return CartItems;
         }
 
-        [HttpPost(Name = "Update")]
+        [HttpPost("UpdateQuantity")]
         public List<CartItem> UpdateQuantity(int Id, int newQuantity)
         {
             CartItems.FirstOrDefault(x => x.Item.Id == Id).Quantity = newQuantity;
